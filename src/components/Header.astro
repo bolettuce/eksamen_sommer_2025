@@ -1,6 +1,70 @@
 ---
 ---
-<div class="max-w-screen-xl mx-auto text-white">
-    Header/Navigation
-</div>
-    
+
+<header class="fixed top-0 left-0 w-full z-50 p-l flex justify-between items-start">
+<!-- Logo -->
+    <a
+        href="/index.astro"
+        class="block w-auto h-auto hover:animate-spin-once">
+        <img src="/images/nykredit_logo.svg"
+            alt="Nykredit logo"
+            class="h-9"
+        />
+    </a>
+  
+    <!-- Burger button -->
+    <button
+        class="burger relative z-50 flex flex-col justify-between w-7 h-6"
+        aria-label="Toggle menu"
+        >
+        <span class="line h-1 bg-lysgul-500 rounded-pill transition-all duration-300"></span>
+        <span class="line h-1 bg-lysgul-500 rounded-pill transition-all duration-300"></span>
+        <span class="line h-1 bg-lysgul-500 rounded-pill transition-all duration-300"></span>
+    </button>
+  
+    <!-- Menu overlay -->
+    <div
+      class="menu fixed inset-0 bg-white/60 backdrop-blur z-40 flex justify-end p-2xl opacity-0 invisible duration-300"
+    >
+    <ul class="text-heading-01-mobile sm:text-display-02-desktop space-y-l md:space-y-2xl text-right pt-4xl">
+        <li>
+          <a href="#" class="inline-block border-b-m border-transparent hover:border-black transition-all duration-300">
+            Værker
+          </a>
+        </li>
+        <li>
+          <a href="#" class="inline-block border-b-m border-transparent hover:border-black transition-all duration-300">
+            Om samlingen
+          </a>
+        </li>
+        <li>
+          <a href="#" class="inline-block border-b-m border-transparent hover:border-black transition-all duration-300">
+            Rundvisning
+          </a>
+        </li>
+        <li>
+          <a href="#" class="inline-block border-b-m border-transparent hover:border-black transition-all duration-300">
+            Kort
+          </a>
+        </li>
+      </ul>
+      
+    </div>
+  
+    <script is:client>
+      const burger = document.querySelector('.burger');
+      const menu = document.querySelector('.menu');
+      const lines = burger.querySelectorAll('.line');
+  
+      burger.addEventListener('click', () => {
+        menu.classList.toggle('opacity-0');
+        menu.classList.toggle('invisible');
+        lines[0].classList.toggle('rotate-45');
+        lines[0].classList.toggle('translate-y-3');
+        lines[1].classList.toggle('opacity-0');
+        lines[2].classList.toggle('-rotate-45');
+        lines[2].classList.toggle('-translate-y-2');
+      });
+    </script>
+  </header>
+  

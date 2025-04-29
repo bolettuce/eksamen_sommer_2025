@@ -1,3 +1,66 @@
+@font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-RegularItalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-BoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-ExtraBold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Nykredit Sans';
+    src: url('/fonts/NykreditSans/NykreditSans-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,3 +70,167 @@
         @apply text-body;
     } */
 }
+
+@layer utilities {
+    .text-display-01-desktop {
+      font-size: 160px;
+      line-height: 160px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .text-display-02-desktop {
+      font-size: 72px;
+      line-height: 80px;
+      font-weight: 700;
+      letter-spacing: -0.018em;
+    }
+    .text-heading-01-desktop {
+      font-size: 56px;
+      line-height: 60px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .text-heading-02-desktop {
+      font-size: 48px;
+      line-height: 56px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .text-heading-03-desktop {
+      font-size: 40px;
+      line-height: 48px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .text-heading-04-desktop {
+      font-size: 36px;
+      line-height: 44px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .text-heading-05-desktop {
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 700;
+      letter-spacing: -0.012em;
+    }
+    .text-subheading-01-desktop {
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 600;
+      letter-spacing: -0.012em;
+    }
+    .text-subheading-02-desktop {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+    .text-body-xxl-desktop {
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .text-body-xl-desktop {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .text-body-lg-desktop {
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .text-body-regular-desktop {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+  }
+
+  @layer utilities {
+    .text-display-01-mobile {
+      font-size: 120px;
+      line-height: 130px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .text-display-02-mobile {
+      font-size: 54px;
+      line-height: 60px;
+      font-weight: 700;
+      letter-spacing: -0.018em;
+    }
+    .text-heading-01-mobile {
+      font-size: 42px;
+      line-height: 46px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .text-heading-02-mobile {
+      font-size: 36px;
+      line-height: 40px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .text-heading-03-mobile {
+      font-size: 30px;
+      line-height: 34px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .text-heading-04-mobile {
+      font-size: 27px;
+      line-height: 30px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .text-heading-05-mobile {
+      font-size: 24px;
+      line-height: 26px;
+      font-weight: 700;
+      letter-spacing: -0.012em;
+    }
+    .text-subheading-01-mobile {
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 600;
+      letter-spacing: 0.018em;
+    }
+    .text-subheading-02-mobile {
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+    .text-body-xxl-mobile {
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .text-body-xl-mobile {
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .text-body-lg-mobile {
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .text-body-regular-mobile {
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+  }
+  
+  
