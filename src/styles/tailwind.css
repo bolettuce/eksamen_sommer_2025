@@ -72,6 +72,7 @@
 }
 
 @layer utilities {
+  
     .text-display-01-desktop {
       font-size: 160px;
       line-height: 160px;

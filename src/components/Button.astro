@@ -1,5 +1,29 @@
 ---
+const { href = "#", label = "Klik her" } = Astro.props;
 ---
-<div>
-    <button class="border-2 border-black"><slot /></button>
-</div>
+
+<a
+  href={href}
+  class="
+    inline-flex
+    items-center
+    justify-center
+    text-center
+    text-black
+    border-black
+    border-s
+    rounded-pill
+    bg-transparent
+    hover:bg-black
+    hover:text-white
+    transition-colors
+    duration-300
+    px-l
+    py-xs
+    sm:px-xl
+    text-body-regular-mobile
+    sm:text-body-regular-desktop
+  "
+>
+  {label}
+</a>
