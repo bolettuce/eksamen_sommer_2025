@@ -1,29 +1,57 @@
 ---
-const { href = "#", label = "Klik her" } = Astro.props;
+const { label, href } = Astro.props;
 ---
 
-<a
-  href={href}
-  class="
-    inline-flex
-    items-center
-    justify-center
-    text-center
-    text-black
-    border-black
-    border-s
-    rounded-pill
-    bg-transparent
-    hover:bg-black
-    hover:text-white
-    transition-colors
-    duration-300
-    px-l
-    py-xs
-    sm:px-xl
-    text-body-regular-mobile
-    sm:text-body-regular-desktop
-  "
->
-  {label}
-</a>
+{href ? (
+  <a
+    href={href}
+    class="
+      inline-flex
+      items-center
+      justify-center
+      text-center
+      text-black
+      border-black
+      border-s
+      rounded-pill
+      bg-transparent
+      hover:bg-black
+      hover:text-white
+      transition-colors
+      duration-300
+      px-l
+      py-xs
+      sm:px-xl
+      text-body-regular-mobile
+      sm:text-body-regular-desktop
+    "
+  >
+    {label}
+  </a>
+) : (
+  <button
+    type="button"
+    class="
+      inline-flex
+      items-center
+      justify-center
+      text-center
+      text-black
+      border-black
+      border-s
+      rounded-pill
+      bg-transparent
+      hover:bg-black
+      hover:text-white
+      transition-colors
+      duration-300
+      px-l
+      py-xs
+      sm:px-xl
+      text-body-regular-mobile
+      sm:text-body-regular-desktop
+    "
+  >
+    {label}
+  </button>
+)}

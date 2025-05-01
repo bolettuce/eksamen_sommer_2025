@@ -1,0 +1,19 @@
+---
+const { imageSrc, imageAlt, artist, title } = Astro.props;
+---
+
+<div>
+  <div class="overflow-hidden">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      class="w-full h-auto object-cover transition duration-300 ease-in-out hover:blur-sm"
+    />
+  </div>
+    <div class="pt-s">
+      <p class="text-body-xl-mobile sm:text-body-xl-desktop">{artist}</p>
+      <p class="text-heading-05-mobile sm:text-heading-04-desktop hover:underline transition-all duration-300">
+        {title}
+      </p>
+  </div>
+</div>

@@ -1,33 +1,38 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Button from '../components/Button.astro';
+import ArtworkCard from '../components/ArtworkCard.astro';
+import { Image } from 'astro:assets';
 import landingImg from '../assets/images/landing_billede.png';
+import Splash from "../components/Splash.astro";
 ---
 <MainLayout title="Titel">
+
   <section class="w-full">
-    <!-- Hero sektion -->
+    <!-- Hero billede med overlejret tekst -->
     <section class="relative w-full">
-      <!-- Billede -->
       <img
         src={landingImg.src}
         alt="Indgangsparti i Nykredit Huset"
         class="w-full object-cover"
       />
-
-      <!-- Overlejret tekst -->
       <div class="absolute inset-0 flex items-center justify-center text-center pointer-events-none">
         <div class="text-lysgul-500 text-subheading-02-mobile sm:text-heading-01-desktop font-regular leading-tight">
           <div class="flex flex-wrap justify-center gap-1">
             {Array.from('BYGNINGSINTEGRERET KUNST').map((char) => (
-              <span class="inline-block pointer-events-auto translate-y-0 transition-transform duration-300 ease-out hover:-translate-y-4">
-                {char === ' ' ? '\u00A0' : char}
+              <span
+                class="inline-block pointer-events-auto translate-y-0 transition-transform duration-300 ease-out hover:-translate-y-2"
+              >
+                {char === ' ' ? ' ' : char}
               </span>
             ))}
           </div>
           <div class="flex flex-wrap justify-center gap-1 mt-s">
             {Array.from('I NYKREDIT HUSET').map((char) => (
-              <span class="inline-block pointer-events-auto translate-y-0 transition-transform duration-300 ease-out hover:-translate-y-4">
-                {char === ' ' ? '\u00A0' : char}
+              <span
+                class="inline-block pointer-events-auto translate-y-0 transition-transform duration-300 ease-out hover:-translate-y-2"
+              >
+                {char === ' ' ? ' ' : char}
               </span>
             ))}
           </div>
@@ -35,14 +40,94 @@ import landingImg from '../assets/images/landing_billede.png';
       </div>
     </section>
 
-    <!-- Tekst og knap -->
+    <!-- Intro tekst og knap -->
     <div class="flex flex-col items-end justify-center gap-3xl px-l md:px-6xl py-6xl text-black max-w-screen-xl mx-auto">
       <p class="text-body-xl-mobile sm:text-body-xl-desktop">
-        De bygningsintegrerede værker er nøje udvalgt og udviklet i samspil med arkitekturen for at skabe rum, der inspirerer, engagerer og åbner for nye perspektiver. Kunstens rolle er ikke kun æstetisk, men skal også styrke følelsen af tilhør og gøre hverdagen rigere for både medarbejdere og besøgende.
-        Oplev hvordan kunst og arkitektur går i dialog og se værkerne med egne øjne på en rundvisning.
+        De bygningsintegrerede værker er nøje udvalgt og udviklet i samspil med arkitekturen for at skabe rum, der inspirerer, engagerer og åbner for nye perspektiver. Kunstens rolle er ikke kun æstetisk, men skal også styrke følelsen af tilhør og gøre hverdagen rigere for både medarbejdere og besøgende. Oplev hvordan kunst og arkitektur går i dialog og se værkerne med egne øjne på en rundvisning.
       </p>
-
-      <Button label="Book en rundvisning" />
+      <Button label="Book en rundvisning" href="/" />
     </div>
+
+    <!-- Udvalgte værker -->
+    <section class="py-7xl">
+      <h2 class="text-heading-02-mobile sm:text-heading-02-desktop pl-l sm:pl-6xl mb-3xl">Udvalgte værker</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-xs">
+        <ArtworkCard 
+          imageSrc="/images/Fremtiden_forgrener_sig_til_nutiden_landing.png" 
+          imageAlt="Fremtiden forgrener sig til nutiden værk" 
+          artist="Peter Holst Henckel" 
+          title="Fremtiden forgrener sig til nutiden" 
+        />
+        <ArtworkCard 
+          imageSrc="/images/Panta_rei_landing.png" 
+          imageAlt="Panta Rei værk" 
+          artist="Bjørn Nørgaard" 
+          title="Panta Rei" 
+        />
+        <ArtworkCard 
+          imageSrc="/images/Staccato_Snapshot_landing.png" 
+          imageAlt="Staccato Snapshot værk" 
+          artist="Carl Lützen" 
+          title="Staccato Snapshot" 
+        />
+        <ArtworkCard 
+          imageSrc="/images/Remise_landing.png" 
+          imageAlt="REMISE værk" 
+          artist="A Kassen" 
+          title="REMISE" 
+        />
+      </div>
+	  <div class="flex flex-col items-end pr-l pt-5xl sm:pr-6xl">
+		<Button label="Se hele samlingen" href="/vaerker" />
+	</div>
+    </section>
+
+	<!-- Filosofien bag samlingen -->
+	<section class="flex flex-col md:flex-row items-start gap-6xl mx-auto py-6xl">
+		<!-- Billede -->
+		<div class="w-full md:w-1/2">
+		<img
+			src="/images/Nykredit_R5_5991.jpg"
+			alt="Kunstværk udendørs"
+			class="w-full object-cover h-full"
+		/>
+		</div>
+	
+		<!-- Tekst -->
+		<div class="md:w-1/2 px-l md:pl-0 md:pr-6xl flex items-center">
+		<div class="">
+			<h2 class="text-subheading-01-mobile sm:text-subheading-01-desktop text-black mb-4xl">
+			Filosofien bag samlingen
+			</h2>
+			<p class="text-body-xxl-mobile sm:text-body-xxl-desktop italic text-black mb-4xl">
+			“Kunstsamlingen er et naturligt udtryk for den kultur, vi ønsker at fremme i Nykredit 
+			– en kultur, hvor refleksion, dialog og menneskeligt nærvær er centrale værdier. Ved at integrere kunsten i vores bygninger skaber vi rum, der inspirerer og forbinder 
+			– ikke bare medarbejdere, men også gæster og omverden. Det handler om mere end udsmykning; det handler om at tage ansvar for vores fælles rum og skabe mulighed for meningsfulde møder.”
+			</p>
+			<p class="text-body-base-mobile sm:text-body-base-desktop font-medium text-black">
+			Michael Rasmussen, CEO i Nykredit
+			</p>
+		</div>
+		</div>
+	</section>
+  
+	
+	<section class="p-l sm:p-6xl">
+		<div>
+			<h1 class="text-heading-01-mobile sm:text-heading-01-desktop mb-5xl">
+				Kunsten skaber refleksion og fællesskab
+			</h1>
+			<p class="mb-5xl">
+				Den bygningsintegrerede kunst i Nykredit Huset er en del af bygningens DNA. Kunstværkerne er skabt specifikt til husets arkitektur og tænkt ind i rummet fra starten – ikke som udsmykning, men som en meningsfuld del af omgivelserne. Formålet er at gøre kunsten til noget, man oplever og lever med til daglig, snarere end noget, man går forbi.
+				<br><br/>Samtidig er kunstværkerne nøje udvalgt for at afspejle en grundlæggende værdi om at skabe noget, der ikke kun er smukt, men også fælles. Flere af værkerne er resultatet af åbne konkurrencer, hvor både arkitekter, kuratorer og medarbejdere har været involveret i processen. Andre værker trækker på bidrag fra medarbejdere i hele landet og fortæller dermed historier, der rækker ud over huset selv.
+				<br><br/>Kunstsamlingen er med andre ord ikke kun til pynt – den er en aktiv del af det daglige liv i bygningen. En stille, men vedvarende påmindelse om, at æstetik og eftertanke kan spille en rolle i både arbejdsliv og fællesskab.
+			</p>
+		</div>
+		<div class="flex flex-col items-end">
+			<Button label="Læs mere om samlingen" href="/" />
+		</div>
+
+	</section>
+	  
   </section>
 </MainLayout>
