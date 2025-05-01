@@ -1,0 +1,54 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import bronzeskulpturer from '../assets/images/vaerk_oversigt_bronzeskulpturer.jpg';
+import explorer from '../assets/images/vaerk_oversigt_explorer.jpg';
+import fremtiden from '../assets/images/vaerk_oversigt_fremtiden_forgrener_sig_til_nutiden.jpg';
+import interferens from '../assets/images/vaerk_oversigt_interferens.jpg';
+import lokalePortaler from '../assets/images/vaerk_oversigt_lokale_portaler.jpg';
+import pantaRei from '../assets/images/vaerk_oversigt_panta_rei.jpg';
+import remise from '../assets/images/vaerk_oversigt_remise.jpg';
+import staccato from '../assets/images/vaerk_oversigt_staccato_snapshot.jpg';
+import traad from '../assets/images/vaerk_oversigt_traad.jpg';
+import uendelig from '../assets/images/vaerk_oversigt_uendelig.png';
+
+const artworks = [
+  { title: 'TRÅD', id: 'traad', image: traad },
+  { title: 'REMISE', id: 'remise', image: remise },
+  { title: 'INTERFERENS', id: 'interferens', image: interferens },
+  { title: 'Fremtiden forgrener sig til nutiden', id: 'fremtiden', image: fremtiden },
+  { title: 'Lokale Portaler', id: 'portaler', image: lokalePortaler },
+  { title: 'Staccato Snapshot', id: 'staccato', image: staccato },
+  { title: 'Uendelig', id: 'uendelig', image: uendelig },
+  { title: 'Explorer', id: 'explorer', image: explorer },
+  { title: 'Panta Rei', id: 'panta', image: pantaRei },
+  { title: 'Bronzeskulpturer', id: 'bronzeskulpturer', image: bronzeskulpturer },
+];
+---
+
+<MainLayout title="Værker">
+    <section class="relative px-9xl pt-9xl min-h-screen overflow-hidden bg-white">
+      <!-- Baggrundsbilleder -->
+      {artworks.map((art) => (
+        <img
+          id={`img-${art.id}`}
+          src={art.image.src}
+          alt={`Billede af ${art.title}`}
+          class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 pointer-events-none"
+        />
+      ))}
+  
+      <!-- Titler -->
+      <div class="relative z-10 flex flex-col gap-s text-heading-02-mobile sm:text-display-02-desktop font-medium text-lysgul-500">
+        {artworks.map((art) => (
+          <h2
+            class="cursor-pointer hover:underline"
+            onmouseenter={`document.querySelectorAll('[id^="img-"]').forEach(el => el.classList.add('opacity-0')); document.getElementById('img-${art.id}')?.classList.remove('opacity-0');`}
+            onmouseleave={`document.getElementById('img-${art.id}')?.classList.add('opacity-0');`}
+          >
+            {art.title}
+          </h2>
+        ))}
+      </div>
+    </section>
+  </MainLayout>
+  
