@@ -1,0 +1,73 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Button from '../components/Button.astro';
+import carlLutzen from '../assets/images/samlingen_1.jpg';
+import metteGitzJohansen from '../assets/images/samlingen_2.jpg';
+---
+<MainLayout title="Om samlingen">
+  <section class="w-full pt-2xl">
+    
+    <!-- Intro -->
+    <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
+      <h1 class="text-heading-01-mobile sm:text-heading-01-desktop mb-xl md:mb-4xl">
+        Kunst berører alle. Vi hylder nye perspektiver for at udfordre og inspirere
+      </h1>
+      <p class="text-body-regular-mobile sm:text-body-regular-desktop">
+        I Nykredit Huset spiller kunsten en aktiv rolle i hverdagen. Den er integreret som en naturlig del af arkitekturen og skaber både forskønnelse, refleksion og dialog. Kunstsamlingen er kurateret ud fra ønsket om at fremme et inspirerende og innovativt miljø, hvor medarbejdere og gæster mødes af værker, der åbner for nye perspektiver. I stedet for at provokere vægter vi, at kunsten skal vække nysgerrighed, skabe glæde og sætte tanker i gang – i mødet mellem mennesker, rum og idéer.
+      </p>
+    </section>
+
+    <!-- Billede -->
+    <div>
+      <img
+        src={carlLutzen.src}
+        alt="Indgangsparti i Nykredit Huset"
+        class="w-full object-cover"
+      />
+    </div>
+
+    <!-- Nye kunstnere -->
+    <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
+      <h2 class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xl md:mb-4xl">
+        Nye kunstnere får plads til at vokse
+      </h2>
+      <div class="grid md:grid-cols-2 gap-3xl md:gap-6xl">
+        <p class="text-body-regular-mobile sm:text-body-regular-desktop">
+          Med afsæt i ønsket om at fremme social bæredygtighed valgte Nykredit at afholde en åben konkurrence for bygningsintegreret kunst i forbindelse med etableringen af det nye hovedsæde. Formålet var at give nye, unge og uetablerede kunstnere en platform til at udfolde sig på lige fod med mere etablerede navne. Udvælgelsen blev baseret på åbenhed, kunstnerisk kvalitet og relevans i forhold til huset. Ved at give plads til morgendagens kunstnere investerer Nykredit i fremtidens kreative kræfter – og skaber samtidig et dynamisk, levende kunstmiljø, som løbende inviterer til nye fortolkninger.
+        </p>
+        <div>
+          <p class="text-body-xxl-mobile sm:text-body-xxl-desktop italic mb-xl md:mb-4xl">
+            “Det har været afgørende for os at invitere kunstnere ind, som ellers ikke ville have haft muligheden for at arbejde i det her format - og give dem rum til at tænke stort”
+          </p>
+          <p class="text-body-regular-mobile sm:text-body-regular-desktop">
+            Eva Riis Wiingaard, Kunstansvarlig
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filosofien bag samlingen -->
+    <section class="flex flex-col lg:flex-row items-start pt-5xl md:pt-6xl">
+      <!-- Billede -->
+      <div class="w-full lg:w-1/2">
+        <img
+          src={metteGitzJohansen.src}
+          alt="Billede af atrium i Nykredit Huset"
+          class="w-full object-cover"
+        />
+      </div>
+
+      <!-- Tekst -->
+      <div class="w-full lg:w-1/2 pl-l pr-l md:pl-6xl md:pr-6xl py-5xl py-5xl lg:py-0 lg:py-0 flex items-center">
+        <div>
+          <h2 class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xl md:mb-4xl">
+            Kunst og arkitektur smelter sammen og skaber nye oplevelser i rummet
+          </h2>
+          <p class="text-body-regular-mobile sm:text-body-regular-desktop">
+            I Nykredit Huset er kunsten tænkt sammen med arkitekturen fra første streg. De bygningsintegrerede værker folder sig ud i samspil med materialer, former og rumligheder og inviterer til sanselige oplevelser på tværs af etager. Kunstværker som Peter Holst Henckels organiske lamelvægge og A Kassens spor af teglsten bryder grænserne mellem kunstværk og bygning og skaber flydende overgange, hvor omgivelserne bliver en aktiv del af oplevelsen. Sammen danner kunst og arkitektur rammerne om en arbejdsplads, hvor æstetik og funktion beriger hinanden i det daglige.
+          </p>
+        </div>
+      </div>
+    </section>
+  </section>
+</MainLayout>

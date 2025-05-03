@@ -1,5 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import ArtworkCard from '../components/ArtworkCard.astro';
+
 import bronzeskulpturer from '../assets/images/vaerk_oversigt_bronzeskulpturer.jpg';
 import explorer from '../assets/images/vaerk_oversigt_explorer.jpg';
 import fremtiden from '../assets/images/vaerk_oversigt_fremtiden_forgrener_sig_til_nutiden.jpg';
@@ -12,22 +14,24 @@ import traad from '../assets/images/vaerk_oversigt_traad.jpg';
 import uendelig from '../assets/images/vaerk_oversigt_uendelig.png';
 
 const artworks = [
-  { title: 'TRÅD', id: 'traad', image: traad },
-  { title: 'REMISE', id: 'remise', image: remise },
-  { title: 'INTERFERENS', id: 'interferens', image: interferens },
-  { title: 'Fremtiden forgrener sig til nutiden', id: 'fremtiden', image: fremtiden },
-  { title: 'Lokale Portaler', id: 'portaler', image: lokalePortaler },
-  { title: 'Staccato Snapshot', id: 'staccato', image: staccato },
-  { title: 'Uendelig', id: 'uendelig', image: uendelig },
-  { title: 'Explorer', id: 'explorer', image: explorer },
-  { title: 'Panta Rei', id: 'panta', image: pantaRei },
-  { title: 'Bronzeskulpturer', id: 'bronzeskulpturer', image: bronzeskulpturer },
+  { title: 'TRÅD', id: 'traad', image: traad, artist: 'A Kassen' },
+  { title: 'REMISE', id: 'remise', image: remise, artist: 'A Kassen' },
+  { title: 'INTERFERENS', id: 'interferens', image: interferens, artist: 'A Kassen' },
+  { title: 'Fremtiden forgrener sig til nutiden', id: 'fremtiden', image: fremtiden, artist: 'Peter Holst Henckel' },
+  { title: 'Lokale Portaler', id: 'portaler', image: lokalePortaler, artist: 'Rumgehør & Tideland Studio' },
+  { title: 'Staccato Snapshot', id: 'staccato', image: staccato, artist: 'Carl Lützen' },
+  { title: 'Uendelig', id: 'uendelig', image: uendelig, artist: 'Molly Haslund' },
+  { title: 'Explorer', id: 'explorer', image: explorer, artist: 'Mette Gitz-Johansen' },
+  { title: 'Panta Rei', id: 'panta', image: pantaRei, artist: 'Bjørn Nørgaard' },
+  { title: 'Bronzeskulpturer', id: 'bronzeskulpturer', image: bronzeskulpturer, artist: 'Per Kirkeby' },
 ];
 ---
 
 <MainLayout title="Værker">
-    <section class="relative px-9xl pt-9xl min-h-screen overflow-hidden bg-white">
-      <!-- Baggrundsbilleder -->
+  <section class="relative">
+
+    <!-- Desktop (hover-effekt) -->
+    <div class="hidden md:block relative min-h-screen">
       {artworks.map((art) => (
         <img
           id={`img-${art.id}`}
@@ -36,9 +40,8 @@ const artworks = [
           class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 pointer-events-none"
         />
       ))}
-  
-      <!-- Titler -->
-      <div class="relative z-10 flex flex-col gap-s text-heading-02-mobile sm:text-display-02-desktop font-medium text-lysgul-500">
+
+      <div class="relative px-6xl py-7xl z-10 flex flex-col gap-s text-heading-02-mobile sm:text-display-02-desktop font-medium text-lysgul-500">
         {artworks.map((art) => (
           <h2
             class="cursor-pointer hover:underline"
@@ -49,6 +52,21 @@ const artworks = [
           </h2>
         ))}
       </div>
-    </section>
-  </MainLayout>
-  
+    </div>
+
+    <!-- Mobilvisning (cards) -->
+    <div class="block md:hidden">
+      <div class="pb-l grid grid-cols-1 sm:grid-cols-2 gap-s">
+        {artworks.map((art) => (
+          <ArtworkCard 
+            imageSrc={art.image.src}
+            imageAlt={`Billede af ${art.title}`}
+            artist={art.artist}
+            title={art.title}
+          />
+        ))}
+      </div>
+    </div>
+
+  </section>
+</MainLayout>
