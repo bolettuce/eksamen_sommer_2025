@@ -1,0 +1,72 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Button from "../components/Button.astro";
+
+import rundvisning1 from "../assets/images/rundvisning_1.png";
+import rundvisning2 from "../assets/images/rundvisning_2.png";
+---
+
+<MainLayout title="Rundvisning">
+    <section class="w-full pt-2xl">
+          <!-- Intro -->
+  <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
+    <h1 class="text-heading-01-mobile sm:text-heading-01-desktop mb-xl md:mb-4xl">
+      Kunst skal opleves tæt på<br />
+      – derfor inviterer vi indenfor
+    </h1>
+    <p class="text-body-regular-mobile sm:text-body-regular-desktop">
+      Kunsten i Nykredit Huset er skabt til stedet. Den folder sig ud i mødelokaler, foyerer og trapperum og inviterer til nærvær og eftertanke i hverdagen. Derfor mener vi også, at den skal opleves i netop disse rum – i skala 1:1 og i samspil med arkitekturen, lyset og materialerne omkring den.
+    </p>
+    <p class="text-body-regular-mobile sm:text-body-regular-desktop mt-l">
+      Med rundvisningerne ønsker vi at gøre kunsten tilgængelig for alle med interesse. Du behøver hverken at være kunde eller have særligt kendskab til kunst – nysgerrighed er nok. Rundvisningerne giver indsigt i tankerne bag værkerne, processen med at integrere dem i byggeriet og kunstens betydning for både medarbejdere og besøgende.
+    </p>
+  </section>
+
+  <!-- Sticky tekst og billeder -->
+  <section class="">
+    <div class="md:grid md:grid-cols-2 md:items-start">
+      <!-- Billeder -->
+      <div class="flex flex-col gap-xs">
+        <img
+          src={rundvisning1.src}
+          alt="Rundvisning i Nykredit Huset"
+          class="w-full object-cover"
+        />
+        <img
+          src={rundvisning2.src}
+          alt="Besøgende ved kunstværk"
+          class="w-full object-cover"
+        />
+      </div>
+            <!-- Sticky tekst -->
+            <div class="pb-5xl pt-5xl md:pb-6xl md:pt-0 px-l md:px-6xl md:sticky md:top-[72px] md:self-start">
+                <h2 class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xl md:mb-4xl">
+                  Praktisk information om rundvisninger
+                </h2>
+                <ul class="text-body-regular-mobile sm:text-body-regular-desktop space-y-xl">
+                  <li>
+                    <strong>Tilmelding:</strong><br />
+                    Der er ikke faste tidspunkter for rundvisninger. Hvis du ønsker at deltage, kan du skrive til den kunstansvarlige på <a href="mailto:kunst@nykredit.dk" class="underline">kunst@nykredit.dk</a>. Du vil herefter modtage forslag til datoer og tidspunkter.
+                  </li>
+                  <li>
+                    <strong>Pris:</strong><br />
+                    Rundvisningerne er gratis.
+                  </li>
+                  <li>
+                    <strong>Hvem kan deltage:</strong><br />
+                    Rundvisningerne er åbne for alle med interesse for kunst og arkitektur – også selvom du ikke er kunde eller ansat i Nykredit.
+                  </li>
+                  <li>
+                    <strong>Varighed:</strong><br />
+                    Rundvisningen starter ved receptionen i Nykredits hovedsæde i Nordhavn. Adressen er Sundkrogsgade 25, 2150 Nordhavn. Der vil være en vært til stede, som tager imod og guider deltagerne rundt i bygningen.
+                  </li>
+                  <li>
+                    <strong>Særlige behov:</strong><br />
+                    Hvis du har behov for særlig adgang, fx elevator, eller har spørgsmål til rundvisningens indhold, er du velkommen til at nævne det i din henvendelse.
+                  </li>
+                </ul>
+              </div>
+    </div>
+    </section>
+    </section>
+</MainLayout>
