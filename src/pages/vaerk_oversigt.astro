@@ -14,16 +14,16 @@ import traad from '../assets/images/vaerk_oversigt_traad.jpg';
 import uendelig from '../assets/images/vaerk_oversigt_uendelig.png';
 
 const artworks = [
-  { title: 'TRÅD', id: 'traad', image: traad, artist: 'A Kassen' },
-  { title: 'REMISE', id: 'remise', image: remise, artist: 'A Kassen' },
-  { title: 'INTERFERENS', id: 'interferens', image: interferens, artist: 'A Kassen' },
-  { title: 'Fremtiden forgrener sig til nutiden', id: 'fremtiden', image: fremtiden, artist: 'Peter Holst Henckel' },
-  { title: 'Lokale Portaler', id: 'portaler', image: lokalePortaler, artist: 'Rumgehør & Tideland Studio' },
-  { title: 'Staccato Snapshot', id: 'staccato', image: staccato, artist: 'Carl Lützen' },
-  { title: 'Uendelig', id: 'uendelig', image: uendelig, artist: 'Molly Haslund' },
-  { title: 'Explorer', id: 'explorer', image: explorer, artist: 'Mette Gitz-Johansen' },
-  { title: 'Panta Rei', id: 'panta', image: pantaRei, artist: 'Bjørn Nørgaard' },
-  { title: 'Bronzeskulpturer', id: 'bronzeskulpturer', image: bronzeskulpturer, artist: 'Per Kirkeby' },
+  { title: 'TRÅD', slug: 'traad', image: traad, artist: 'A Kassen' },
+  { title: 'REMISE', slug: 'remise', image: remise, artist: 'A Kassen' },
+  { title: 'INTERFERENS', slug: 'interferens', image: interferens, artist: 'A Kassen' },
+  { title: 'Fremtiden forgrener sig til nutiden', slug: 'fremtiden-forgrener-sig-til-nutiden', image: fremtiden, artist: 'Peter Holst Henckel' },
+  { title: 'Lokale Portaler', slug: 'lokale-portaler', image: lokalePortaler, artist: 'Rumgehør & Tideland Studio' },
+  { title: 'Staccato Snapshot', slug: 'staccato-snapshot', image: staccato, artist: 'Carl Lützen' },
+  { title: 'Uendelig', slug: 'uendelig', image: uendelig, artist: 'Molly Haslund' },
+  { title: 'Explorer', slug: 'explorer', image: explorer, artist: 'Mette Gitz-Johansen' },
+  { title: 'Panta Rei', slug: 'panta-rei', image: pantaRei, artist: 'Bjørn Nørgaard' },
+  { title: 'Bronzeskulpturer', slug: 'bronzeskulpturer', image: bronzeskulpturer, artist: 'Per Kirkeby' },
 ];
 ---
 
@@ -34,7 +34,7 @@ const artworks = [
     <div class="hidden md:block relative min-h-screen">
       {artworks.map((art) => (
         <img
-          id={`img-${art.id}`}
+          id={`img-${art.slug}`}
           src={art.image.src}
           alt={`Billede af ${art.title}`}
           class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 pointer-events-none"
@@ -43,13 +43,15 @@ const artworks = [
 
       <div class="relative px-6xl py-7xl z-10 flex flex-col gap-s text-heading-02-mobile sm:text-display-02-desktop font-medium text-lysgul-500">
         {artworks.map((art) => (
-          <h2
-            class="cursor-pointer hover:underline"
-            onmouseenter={`document.querySelectorAll('[id^="img-"]').forEach(el => el.classList.add('opacity-0')); document.getElementById('img-${art.id}')?.classList.remove('opacity-0');`}
-            onmouseleave={`document.getElementById('img-${art.id}')?.classList.add('opacity-0');`}
-          >
-            {art.title}
-          </h2>
+          <a href={`/${art.slug}`}>
+            <h2
+              class="cursor-pointer hover:underline"
+              onmouseenter={`document.querySelectorAll('[id^="img-"]').forEach(el => el.classList.add('opacity-0')); document.getElementById('img-${art.slug}')?.classList.remove('opacity-0');`}
+              onmouseleave={`document.getElementById('img-${art.slug}')?.classList.add('opacity-0');`}
+            >
+              {art.title}
+            </h2>
+          </a>
         ))}
       </div>
     </div>
@@ -58,12 +60,14 @@ const artworks = [
     <div class="block md:hidden">
       <div class="pb-l grid grid-cols-1 sm:grid-cols-2 gap-s">
         {artworks.map((art) => (
-          <ArtworkCard 
-            imageSrc={art.image.src}
-            imageAlt={`Billede af ${art.title}`}
-            artist={art.artist}
-            title={art.title}
-          />
+          <a href={`/${art.slug}`}>
+            <ArtworkCard 
+              imageSrc={art.image.src}
+              imageAlt={`Billede af ${art.title}`}
+              artist={art.artist}
+              title={art.title}
+            />
+          </a>
         ))}
       </div>
     </div>

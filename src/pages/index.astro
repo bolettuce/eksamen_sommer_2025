@@ -2,6 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Button from '../components/Button.astro';
 import ArtworkCard from '../components/ArtworkCard.astro';
+import Splash from '../components/Splash.astro';
 
 import landingImg from '../assets/images/landing_billede.png';
 import FremtidenLanding from '../assets/images/Fremtiden_forgrener_sig_til_nutiden_landing.png';
@@ -9,7 +10,10 @@ import pantaRei from '../assets/images/Panta_rei_landing.png';
 import Remine from '../assets/images/Remise_landing.png';
 import staccatoSnapshot from '../assets/images/Staccato_Snapshot_landing.png';
 ---
+
 <MainLayout title="Nykredit Art Collection">
+<Splash />
+
   <section class="w-full">
 
     <!-- Hero billede med overlejret tekst -->
@@ -97,7 +101,7 @@ import staccatoSnapshot from '../assets/images/Staccato_Snapshot_landing.png';
 		<br></br>Kunstsamlingen er med andre ord ikke kun til pynt – den er en aktiv del af det daglige liv i bygningen. En stille, men vedvarende påmindelse om, at æstetik og eftertanke kan spille en rolle i både arbejdsliv og fællesskab.
       </p>
       <div class="flex justify-end">
-        <Button label="Læs mere om samlingen" href="/" />
+        <Button label="Læs mere om samlingen" href="/vaerk_underside" />
       </div>
     </section>
 

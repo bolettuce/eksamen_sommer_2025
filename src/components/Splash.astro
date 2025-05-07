@@ -16,14 +16,18 @@ let isVisible = true;
         ))}
         </div>
         <div class="flex flex-wrap justify-center gap-1 overflow-hidden mt-s">
-        {Array.from('Art Collection').map((letter, index) => (
+          {Array.from('Art Collection').map((letter, index) => (
             <span
-            class="inline-block opacity-0 animate-fade-up"
-            style={{ animationDelay: `${(index + 10) * 80}ms`, animationDuration: '700ms', animationTimingFunction: 'ease-out' }}
+              class="inline-block opacity-0 animate-fade-up"
+              style={{
+                animationDelay: `${(index + 10) * 80}ms`,
+                animationDuration: '700ms',
+                animationTimingFunction: 'ease-out'
+              }}
             >
-            {letter}
+              {letter === ' ' ? '\u00a0' : letter}
             </span>
-        ))}
+          ))}
         </div>
     </div>
     </div>
