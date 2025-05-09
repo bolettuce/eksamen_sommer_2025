@@ -109,14 +109,20 @@ const artworks = [
         dot.addEventListener('click', (e) => {
           e.stopPropagation();
   
-          // Luk tidligere åbne kort hvis nødvendigt
+          const allDots = document.querySelectorAll('.prik');
+  
+          // Luk det åbne kort hvis man klikker en anden
           if (openCard && openCard !== card) {
             openCard.style.display = 'none';
+            allDots.forEach(d => d.style.opacity = '1');
           }
   
-          // Toggle synlighed
           const isVisible = card.style.display === 'block';
+  
+          // Toggle
           card.style.display = isVisible ? 'none' : 'block';
+          allDots.forEach(d => d.style.opacity = isVisible ? '1' : '0');
+  
           openCard = isVisible ? null : card;
         });
       });
@@ -124,11 +130,12 @@ const artworks = [
       document.addEventListener('click', () => {
         if (openCard) {
           openCard.style.display = 'none';
+          document.querySelectorAll('.prik').forEach(d => d.style.opacity = '1');
           openCard = null;
         }
       });
     } else {
-      // Hover-effekt for desktop
+      // Desktop hover-effekt
       groups.forEach(group => {
         const dot = group.querySelector('.prik');
         const card = group.querySelector('.kort-card');
@@ -146,4 +153,5 @@ const artworks = [
       });
     }
   </script>
+  
   
