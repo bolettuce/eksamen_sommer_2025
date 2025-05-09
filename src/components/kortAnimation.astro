@@ -1,0 +1,84 @@
+---
+import floor5 from '../assets/images/kort_5.sal.svg';
+import floor4 from '../assets/images/kort_4.sal.svg';
+import floor3 from '../assets/images/kort_3.sal.svg';
+import floor2 from '../assets/images/kort_2.sal.svg';
+import floor1 from '../assets/images/kort_1.sal.svg';
+import stuen from '../assets/images/kort_stuen.svg';
+import kaelder from '../assets/images/kort_kaelder.svg';
+
+const floorImages = [
+  { src: floor5.src, alt: '5. sal', offset: -300, label: '5. sal' },
+  { src: floor4.src, alt: '4. sal', offset: -200, label: '4. sal' },
+  { src: floor3.src, alt: '3. sal', offset: -100, label: '3. sal' },
+  { src: floor2.src, alt: '2. sal', offset: 0, label: '2. sal' },
+  { src: floor1.src, alt: '1. sal', offset: 100, label: '1. sal' },
+  { src: stuen.src,  alt: 'Stuen', offset: 200, label: 'Stuen' },
+  { src: kaelder.src, alt: 'Kælder', offset: 300, label: 'Kælder' },
+];
+---
+
+<div class="relative w-full h-[900px] flex items-center justify-center overflow-visible">
+  {floorImages.map((floor, index) => (
+    <div
+      class="floor-container absolute flex items-center gap-4xl transition-transform duration-700 ease-out opacity-100"
+      id={`floor-${index}`}
+      style={`z-index: ${10 - index};`}
+    >
+      <img
+        src={floor.src}
+        alt={floor.alt}
+        class="floor-img"
+      />
+      <p
+        class="floor-label opacity-0 transition-opacity duration-500 text-subheading-01-mobile sm:text-subheading-01-desktop"
+        id={`label-${index}`}
+      >
+        {floor.label}
+      </p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .floor-img {
+    width: 400px;
+    height: auto;
+  }
+
+  .floor-label {
+    white-space: nowrap;
+    color: #000;
+  }
+
+  @media (max-width: 768px) {
+  .floor-img {
+    width: 260px;
+  }
+
+  .floor-label {
+    font-size: 0.875rem; /* mindre tekst */
+    margin-left: 0.5rem;
+  }
+}
+
+</style>
+
+<script type="module">
+  const containers = document.querySelectorAll('[id^="floor-"]');
+  const labels = document.querySelectorAll('[id^="label-"]');
+  const floorOffsets = [ -300, -200, -100, 0, 100, 200, 300 ];
+
+  setTimeout(() => {
+    containers.forEach((el, i) => {
+      el.style.transform = `translateY(${floorOffsets[i]}px)`;
+    });
+
+    setTimeout(() => {
+      labels.forEach(label => {
+        label.classList.remove('opacity-0');
+      });
+    }, 800);
+  }, 500);
+</script>
+

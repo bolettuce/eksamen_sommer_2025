@@ -1,0 +1,149 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import KortAnimation from "../components/kortAnimation.astro"; 
+import KortCard from '../components/KortCard.astro';
+
+const artworks = [
+  {
+    slug: 'fremtiden-forgrener-sig-til-nutiden',
+    title: 'Fremtiden forgrener sig til nutiden',
+    artist: 'Peter Holst Henckel',
+    placering: 'Placering: Stuen og 3. sal',
+    year: '2024',
+    top: '40%',
+    left: '50%'
+  },
+  {
+    slug: 'panta-rei',
+    title: 'Panta Rei',
+    artist: 'Bjørn Nørgaard',
+    year: '2010',
+    top: '55%',
+    left: '42%'
+  }
+  // Tilføj flere her...
+];
+---
+
+<MainLayout title="Kort">
+  <section class="w-full pt-2xl">
+    <div class="max-w-screen-xl mx-auto px-l md:px-6xl pt-5xl md:pt-6xl">
+      <h1 class="text-heading-01-mobile sm:text-heading-01-desktop mb-xl md:mb-4xl">Kort over værkerne</h1>
+      <p class="text-body-xl-mobile sm:text-body-xl-desktop">
+        Her kan du se en oversigt over, hvor i Nykredit Huset de forskellige værker befinder sig. 
+        Kortet folder sig ud automatisk og viser bygningen etage for etage.
+      </p>
+    </div>
+
+    <!-- Kort og interaktion -->
+    <div class="relative w-full max-w-screen-xl mx-auto h-[900px] flex justify-center">
+      <KortAnimation />
+
+       <!-- Røde prikker og KortCards -->
+       {artworks.map((artwork) => (
+        <div 
+          class="absolute artwork-group opacity-0 transition-opacity z-20"
+          style={`top: ${artwork.top}; left: ${artwork.left}; transform: translate(-50%, -50%);`}
+        >
+          <div 
+            class="prik z-10"
+            style="
+              width: 15px;
+              height: 15px;
+              background: red;
+              border-radius: 50%;
+              transition: all 0.2s;
+              cursor: pointer;
+              position: relative;
+            "
+          ></div>
+      
+          <div class="kort-card hidden z-50">
+            <KortCard 
+              title={artwork.title}
+              artist={artwork.artist}
+              year={artwork.year}
+              placering={artwork.placering}
+              slug={artwork.slug}
+            />
+          </div>
+        </div>
+      ))}
+      
+      
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 300ms ease-out forwards;
+    }
+  
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  
+  <script is:client>
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const groups = document.querySelectorAll('.artwork-group');
+  
+    // Fade prikkerne ind efter kortet folder sig ud
+    setTimeout(() => {
+      groups.forEach(group => group.classList.remove('opacity-0'));
+    }, 1300);
+  
+    if (isMobile) {
+      let openCard = null;
+  
+      groups.forEach(group => {
+        const dot = group.querySelector('.prik');
+        const card = group.querySelector('.kort-card');
+  
+        dot.addEventListener('click', (e) => {
+          e.stopPropagation();
+  
+          // Luk tidligere åbne kort hvis nødvendigt
+          if (openCard && openCard !== card) {
+            openCard.style.display = 'none';
+          }
+  
+          // Toggle synlighed
+          const isVisible = card.style.display === 'block';
+          card.style.display = isVisible ? 'none' : 'block';
+          openCard = isVisible ? null : card;
+        });
+      });
+  
+      document.addEventListener('click', () => {
+        if (openCard) {
+          openCard.style.display = 'none';
+          openCard = null;
+        }
+      });
+    } else {
+      // Hover-effekt for desktop
+      groups.forEach(group => {
+        const dot = group.querySelector('.prik');
+        const card = group.querySelector('.kort-card');
+  
+        group.addEventListener('mouseenter', () => {
+          groups.forEach(g => g.querySelector('.prik').style.opacity = '0');
+          card.classList.add('fade-in-up');
+          card.style.display = 'block';
+        });
+  
+        group.addEventListener('mouseleave', () => {
+          groups.forEach(g => g.querySelector('.prik').style.opacity = '1');
+          card.style.display = 'none';
+        });
+      });
+    }
+  </script>
+  

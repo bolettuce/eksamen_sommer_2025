@@ -1,0 +1,23 @@
+---
+import Button from '../components/Button.astro';
+const { title, artist, year, slug, placering } = Astro.props;
+const imageUrl = `https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/${slug}/billede1.jpg`;
+---
+
+<article class="flex flex-col md:flex-row bg-lysgul-500 w-full max-w-[500px]">
+  <img 
+    src={imageUrl} 
+    alt={`Billede af ${title}`} 
+    class="w-full md:w-[250px] h-[300px] md:h-[500px] object-cover" 
+  />
+  <div class="p-l md:p-xl flex flex-col gap-m">
+    <div>
+      <h3 class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xs md:mb-s">{title}</h3>
+      <p class="text-body-regular">{artist} / {year}</p>
+      <p class="text-body-regular mt-xs">{placering}</p>
+    </div>
+    <div class="mt-auto">
+      <Button label="Læs mere" href={`/${slug}`} />
+    </div>
+  </div>
+</article>
