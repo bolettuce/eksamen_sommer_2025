@@ -30,17 +30,25 @@ let isVisible = true;
           ))}
         </div>
     </div>
-    </div>
+</div>
 )}
 
 <script>
-  setTimeout(() => {
+  // Kun vis splash hvis det ikke tidligere er gemt
+  if (!localStorage.getItem('splashShown')) {
+    localStorage.setItem('splashShown', 'true');
+    setTimeout(() => {
+      const splash = document.getElementById('splash');
+      if (splash) {
+        splash.classList.add('opacity-0', 'transition-opacity', 'duration-700');
+        setTimeout(() => {
+          splash.remove();
+        }, 700); // tid til fade-out animation
+      }
+    }, 3000); // splash vises i 3 sekunder
+  } else {
+    // Hvis splash tidligere er vist, fjern det straks
     const splash = document.getElementById('splash');
-    if (splash) {
-      splash.classList.add('opacity-0', 'transition-opacity', 'duration-700');
-      setTimeout(() => {
-        splash.remove();
-      }, 700); // tid til fade-out animation
-    }
-  }, 3000); // splash vises i 3 sekunder
+    if (splash) splash.remove();
+  }
 </script>

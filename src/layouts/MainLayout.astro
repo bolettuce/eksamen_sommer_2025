@@ -1,32 +1,48 @@
 ---
-import Splash from '../components/Splash.astro';
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import '../styles/tailwind.css';
 import 'animate.css';
+import 'aos/dist/aos.css';
 const { title } = Astro.props;
 ---
+
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{Astro.props.title}</title>
-	</head>
-	<body class="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Oplev Nykredits bygningsintegrerede kunstsamling og se værkerne i samspil med arkitekturen. Book rundvisning og læs mere." />
+    <meta name="author" content="Nykredit Art Collection" />
+    <meta property="og:title" content="Nykredit Art Collection" />
+    <meta property="og:description" content="Oplev Nykredits bygningsintegrerede kunstsamling og se værkerne i samspil med arkitekturen." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/nykredit_logo.svg" />
+    <meta name="theme-color" content="#faf8f1" />
+    <link rel="icon" type="image/svg+xml" href="/images/nykredit_logo.svg" />
+    <title>{title}</title>
+  </head>
+  
+  <body class="bg-[#faf8f1]">
+    <!-- AOS animation -->
+    <script>
+      import AOS from 'aos';
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+      });
+    </script>
 
-		<header class="">
-			<Header></Header>
-		</header>
-		
-		<main class=""> 
-			<slot />
-		</main>
+    <header>
+      <Header />
+    </header>
 
-		<footer class="">
-			<Footer></Footer>
-		</footer>
-			
-	</body>
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <Footer />
+    </footer>
+  </body>
 </html>
