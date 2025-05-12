@@ -53,25 +53,25 @@ const imageUrls = [
         <!-- Sticky tekst -->
         <div class="order-1 lg:order-2 pb-5xl pt-7xl lg:pb-0 lg:pt-0 px-l md:px-6xl lg:sticky lg:top-[72px] lg:self-start">
 
-          <a href="/vaerk_oversigt" class="inline-flex items-center text-lysgul-500 hover:underline mb-xl">
+          <a href="/vaerk_oversigt" class="inline-flex items-center text-lysgul-500 hover:underline mb-xl" data-aos="fade-up">
             </svg>
             ← Tilbage til oversigten
           </a>
           
-          <h1 class="text-heading-01-mobile sm:text-heading-01-desktop my-s">
+          <h1 class="text-heading-01-mobile sm:text-heading-01-desktop my-s" data-aos="fade-up">
             {artwork.titel}
           </h1>
 
-          <p class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xl md:mb-4xl">
+          <p class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xl md:mb-4xl" data-aos="fade-up" data-aos-delay="200">
             {artwork.kunstner} / {artwork.år}
           </p>
 
-          <p class="text-body-regular-mobile sm:text-body-regular-desktop mb-xl md:mb-6xl">
+          <p class="text-body-regular-mobile sm:text-body-regular-desktop mb-xl md:mb-6xl" data-aos="fade-up" data-aos-delay="400">
             {artwork.intro_tekst}
           </p>
 
           <div class="flex">
-            <div class="text-body-regular-mobile sm:text-body-regular-desktop space-y-xl mt-4xl">
+            <div class="text-body-regular-mobile sm:text-body-regular-desktop space-y-xl mt-4xl" data-aos="fade-up" data-aos-delay="600">
               <div class="grid grid-cols-[auto_1fr] gap-2xl">
                 <ul class="space-y-xs">
                   <li><strong>Materiale:</strong></li>
@@ -128,10 +128,10 @@ const imageUrls = [
 
     <!-- Beskrivelse -->
     <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
-      <p class="text-body-regular-mobile sm:text-body-regular-desktop mb-xl md:mb-4xl">
+      <p class="text-body-regular-mobile sm:text-body-regular-desktop mb-xl md:mb-4xl" data-aos="fade-up">
         {artwork.beskrivelse}
       </p>
-      <div class="flex justify-end">
+      <div class="flex justify-end" data-aos="fade-left" data-aos-delay="200">
         <Button label="Se kommende rundvisninger" href="/rundvisning" />
       </div>
     </section>
