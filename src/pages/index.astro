@@ -17,27 +17,106 @@ import staccatoSnapshot from '../assets/images/Staccato_Snapshot_landing.webp';
   <section class="w-full">
 
     <!-- Hero billede med overlejret tekst -->
-    <section class="relative w-full">
-      <img src={landingImg.src} alt="Indgangsparti i Nykredit Huset" class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" />
-      <div class="absolute inset-0 flex items-center justify-center text-center pointer-events-none">
-        <div class="text-lysgul-500 text-subheading-02-mobile sm:text-heading-01-desktop font-regular leading-tight">
-          <div class="flex flex-wrap justify-center gap-1">
-            {Array.from('BYGNINGSINTEGRERET KUNST').map((char) => (
-              <span class="inline-block pointer-events-auto translate-y-0 transition-transform duration-300 ease-out hover:-translate-y-2">
-                {char === ' ' ? ' ' : char}
-              </span>
+    <section class="relative w-full h-screen overflow-hidden">
+      <!-- Billede -->
+      <img 
+        id="hero-image" 
+        src={landingImg.src} 
+        alt="Indgangsparti i Nykredit Huset" 
+        class="w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+      />
+
+      <!-- Scatter text -->
+      <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+        <div id="scatter-text" class="text-lysgul-500 text-heading-01-mobile sm:text-display-01-desktop leading-tight relative">
+          <!-- Første linje -->
+          <div class="flex justify-center flex-wrap gap-1">
+            {Array.from('NYKREDIT').map((char, index) => (
+              <span class="inline-block" data-index={index}>{char}</span>
             ))}
           </div>
-          <div class="flex flex-wrap justify-center gap-1 mt-s">
-            {Array.from('I NYKREDIT HUSET').map((char) => (
-              <span class="inline-block pointer-events-auto translate-y-0 transition-transform duration-300 ease-out hover:-translate-y-2">
-                {char === ' ' ? ' ' : char}
-              </span>
+          <!-- Anden linje -->
+          <div class="flex justify-center flex-wrap mt-s gap-1">
+            {Array.from('COLLECTION').map((char, index) => (
+              <span class="inline-block" data-index={index + 10}>{char}</span>
             ))}
           </div>
         </div>
       </div>
+
+      <!-- Scatter + gather animation -->
+      <script is:client>
+      // Scatter + gather animation
+      window.addEventListener('DOMContentLoaded', () => {
+        const letters = document.querySelectorAll('#scatter-text span');
+        const image = document.getElementById('hero-image');
+        let completed = 0;
+
+        // Scatter animation
+        letters.forEach((letter, index) => {
+          const x = (Math.random() - 0.5) * window.innerWidth;
+          const y = (Math.random() - 0.5) * window.innerHeight;
+          letter.style.transform = `translate(${x}px, ${y}px)`;
+
+          setTimeout(() => {
+            letter.style.transition = 'transform 1s ease, opacity 1s ease';
+            letter.style.transform = 'translate(0, 0)';
+            letter.style.opacity = '1';
+
+            letter.addEventListener('transitionend', () => {
+              completed++;
+              if (completed === letters.length) {
+                image.classList.add('opacity-100');
+
+                // Start animation + image rotation
+                setTimeout(() => startImageAnimation(image), 500);
+              }
+            }, { once: true });
+          }, 200 + index * 50);
+        });
+
+        // Funktion til subtil bevægelse + billede fade skift
+        function startImageAnimation(image) {
+          const images = [
+            'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/fremtiden-forgrener-sig-til-nutiden/billede1.jpg',
+            'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/panta-rei/billede1.jpg',
+            'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/staccato-snapshot/billede1.jpg'
+          ];
+          let current = 0;
+
+          // Opret overlay uden at kopiere image classes
+          const overlay = document.createElement('img');
+          overlay.id = 'hero-image-overlay';
+          overlay.src = images[current];
+          overlay.style.position = 'absolute';
+          overlay.style.top = '0';
+          overlay.style.left = '0';
+          overlay.style.width = '100%';
+          overlay.style.height = '100%';
+          overlay.style.objectFit = 'cover';
+          overlay.style.zIndex = '0'; // vigtigt! under teksten
+          overlay.style.opacity = '0';
+          overlay.style.transition = 'opacity 1s ease';
+          overlay.style.pointerEvents = 'none';
+          image.parentNode.insertBefore(overlay, image);
+
+          // Billede fade skift uden at røre teksten
+          setInterval(() => {
+            current = (current + 1) % images.length;
+            overlay.src = images[current];
+            overlay.style.opacity = '1';
+
+            setTimeout(() => {
+              image.src = images[current];
+              overlay.style.opacity = '0';
+            }, 800);
+          }, 2000); // hurtigere skift
+        }
+      });
+      </script>
+
     </section>
+
 
     <!-- Intro tekst og knap -->
     <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
@@ -130,7 +209,7 @@ import staccatoSnapshot from '../assets/images/Staccato_Snapshot_landing.webp';
         <br></br>Flere af værkerne er udviklet gennem åbne konkurrencer eller i tæt samarbejde med medarbejdere og kunstnere fra hele landet. Dette har sikret en bred involvering og understøttet en proces, hvor både kunstnerisk kvalitet og fælles ejerskab er prioriteret. Kunstens rolle i Nykredit Huset handler i høj grad om at fremme den sociale bæredygtighed. Ved at skabe adgang til kunst i hverdagen og lade den være et naturligt indslag i arbejds- og mødesituationer, understøttes trivsel, fællesskab og medarbejdernes oplevelse af medindflydelse og tilhørsforhold.
         <br></br>Kunstsamlingen i Nykredit Huset er derfor ikke blot en æstetisk oplevelse. Den er et levende og vedvarende symbol på virksomhedens ambition om at skabe ansvarlige og inkluderende rammer. Kunsten skal styrke det sociale rum, fremme gensidig respekt og åbne op for nye perspektiver og relationer mellem mennesker. På den måde bidrager kunstværkerne til en dagligdag, hvor æstetik, fællesskab og social bæredygtighed går hånd i hånd og understøtter et arbejdsmiljø med plads til forskellighed, nysgerrighed og samarbejde.
       </p>
-      <div class="flex justify-end" data-aos="fade-left" data-aos-delay="400">
+      <div class="flex justify-end" data-aos="fade-left" data-aos-delay="200">
         <Button label="Læs mere om samlingen" href="/om_samlingen" />
       </div>
     </section>
