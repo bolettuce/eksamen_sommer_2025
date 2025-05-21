@@ -7,213 +7,166 @@ import Splash from '../components/Splash.astro';
 import landingImg from '../assets/images/landing_billede.webp';
 import FremtidenLanding from '../assets/images/Fremtiden_forgrener_sig_til_nutiden_landing.webp';
 import pantaRei from '../assets/images/Panta_rei_landing.webp';
-import Remine from '../assets/images/Remise_landing.webp';
+import Remise from '../assets/images/Remise_landing.webp';
 import staccatoSnapshot from '../assets/images/Staccato_Snapshot_landing.webp';
 ---
 
 <MainLayout title="Nykredit Art Collection">
 
+  <!-- Hero sektion -->
+  <section class="relative w-full h-screen overflow-hidden">
+    <!-- Hero billede -->
+    <img 
+      id="hero-image" 
+      src={landingImg.src} 
+      alt="Indgangsparti i Nykredit Huset" 
+      class="w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+      loading="eager"
+    />
 
-  <section class="w-full">
-
-    <!-- Hero billede med overlejret tekst -->
-    <section class="relative w-full h-screen overflow-hidden">
-      <!-- Billede -->
-      <img 
-        id="hero-image" 
-        src={landingImg.src} 
-        alt="Indgangsparti i Nykredit Huset" 
-        class="w-full h-full object-cover opacity-0 transition-opacity duration-1000"
-      />
-
-      <!-- Scatter text -->
-      <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
-        <div id="scatter-text" class="text-lysgul-500 text-heading-01-mobile sm:text-display-01-desktop leading-tight relative">
-          <!-- Første linje -->
-          <div class="flex justify-center flex-wrap gap-1">
-            {Array.from('NYKREDIT').map((char, index) => (
-              <span class="inline-block" data-index={index}>{char}</span>
-            ))}
-          </div>
-          <!-- Anden linje -->
-          <div class="flex justify-center flex-wrap mt-s gap-1">
-            {Array.from('COLLECTION').map((char, index) => (
-              <span class="inline-block" data-index={index + 10}>{char}</span>
-            ))}
-          </div>
+    <!-- Scatter tekst -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+      <div id="scatter-text" class="text-lysgul-500 text-heading-01-mobile sm:text-display-01-desktop leading-tight relative">
+        <div class="flex justify-center flex-wrap gap-1">
+          {Array.from('NYKREDIT').map((char, index) => (
+            <span class="inline-block" data-index={index}>{char}</span>
+          ))}
+        </div>
+        <div class="flex justify-center flex-wrap mt-s gap-1">
+          {Array.from('COLLECTION').map((char, index) => (
+            <span class="inline-block" data-index={index + 10}>{char}</span>
+          ))}
         </div>
       </div>
-
-      <!-- Scatter + gather animation -->
-      <script is:client>
-      // Scatter + gather animation
-      window.addEventListener('DOMContentLoaded', () => {
-        const letters = document.querySelectorAll('#scatter-text span');
-        const image = document.getElementById('hero-image');
-        let completed = 0;
-
-        // Scatter animation
-        letters.forEach((letter, index) => {
-          const x = (Math.random() - 0.5) * window.innerWidth;
-          const y = (Math.random() - 0.5) * window.innerHeight;
-          letter.style.transform = `translate(${x}px, ${y}px)`;
-
-          setTimeout(() => {
-            letter.style.transition = 'transform 1s ease, opacity 1s ease';
-            letter.style.transform = 'translate(0, 0)';
-            letter.style.opacity = '1';
-
-            letter.addEventListener('transitionend', () => {
-              completed++;
-              if (completed === letters.length) {
-                image.classList.add('opacity-100');
-
-                // Start animation + image rotation
-                setTimeout(() => startImageAnimation(image), 500);
-              }
-            }, { once: true });
-          }, 200 + index * 50);
-        });
-
-        // Funktion til subtil bevægelse + billede fade skift
-        function startImageAnimation(image) {
-          const images = [
-            'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/fremtiden-forgrener-sig-til-nutiden/billede1.jpg',
-            'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/panta-rei/billede1.jpg',
-            'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/staccato-snapshot/billede1.jpg'
-          ];
-          let current = 0;
-
-          // Opret overlay uden at kopiere image classes
-          const overlay = document.createElement('img');
-          overlay.id = 'hero-image-overlay';
-          overlay.src = images[current];
-          overlay.style.position = 'absolute';
-          overlay.style.top = '0';
-          overlay.style.left = '0';
-          overlay.style.width = '100%';
-          overlay.style.height = '100%';
-          overlay.style.objectFit = 'cover';
-          overlay.style.zIndex = '0'; // vigtigt! under teksten
-          overlay.style.opacity = '0';
-          overlay.style.transition = 'opacity 1s ease';
-          overlay.style.pointerEvents = 'none';
-          image.parentNode.insertBefore(overlay, image);
-
-          // Billede fade skift uden at røre teksten
-          setInterval(() => {
-            current = (current + 1) % images.length;
-            overlay.src = images[current];
-            overlay.style.opacity = '1';
-
-            setTimeout(() => {
-              image.src = images[current];
-              overlay.style.opacity = '0';
-            }, 800);
-          }, 2000); // hurtigere skift
-        }
-      });
-      </script>
-
-    </section>
-
-
-    <!-- Intro tekst og knap -->
-    <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
-      <p class="text-body-xl-mobile sm:text-body-xl-desktop mb-3xl md:mb-4xl" data-aos="fade-up">
-        De bygningsintegrerede værker er nøje udvalgt og udviklet i samspil med arkitekturen for at skabe rum, der inspirerer, engagerer og åbner for nye perspektiver. Kunstens rolle er ikke kun æstetisk, men skal også styrke følelsen af tilhør og gøre hverdagen rigere for både medarbejdere og besøgende. Oplev hvordan kunst og arkitektur går i dialog og se værkerne med egne øjne på en rundvisning.
-      </p>
-      <div class="flex justify-end" data-aos="fade-right">
-        <Button label="Book en rundvisning" href="/" />
-      </div>
-    </section>
-
-	<!-- Udvalgte værker -->
-	<section class="py-5xl md:py-6xl">
-		<h2 class="text-heading-02-mobile sm:text-heading-02-desktop mb-xl md:mb-4xl pl-l md:pl-6xl" data-aos="fade-right">
-		Udvalgte værker
-		</h2>
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-xs">
-      <a href="/fremtiden-forgrener-sig-til-nutiden" data-aos="fade-up">
-        <ArtworkCard 
-            imageSrc={FremtidenLanding.src} 
-            imageAlt="Fremtiden forgrener sig til nutiden værk" 
-            artist="Peter Holst Henckel" 
-            title="Fremtiden forgrener sig til nutiden" 
-        />
-    </a>
-    <a href="/panta-rei" data-aos="fade-up" data-aos-delay="200">
-        <ArtworkCard 
-            imageSrc={pantaRei.src} 
-            imageAlt="Panta Rei værk" 
-            artist="Bjørn Nørgaard" 
-            title="Panta Rei" 
-        />
-    </a>
-    <a href="/staccato-snapshot" data-aos="fade-up" data-aos-delay="400">
-        <ArtworkCard 
-            imageSrc={staccatoSnapshot.src} 
-            imageAlt="Staccato Snapshot værk" 
-            artist="Carl Lützen" 
-            title="Staccato Snapshot" 
-        />
-    </a>
-    <a href="/remise" data-aos="fade-up" data-aos-delay="600">
-        <ArtworkCard 
-            imageSrc={Remine.src} 
-            imageAlt="REMISE værk" 
-            artist="A Kassen" 
-            title="REMISE" 
-        />
-    </a>
-    
-		</div>
-		<div class="flex justify-end pt-5xl pr-l md:pr-6xl" data-aos="fade-left">
-		<Button label="Se hele samlingen" href="/vaerk_oversigt" />
-		</div>
-	</section>
-  
-
-    <!-- Filosofien bag samlingen -->
-    <section class="flex flex-col lg:flex-row items-start pt-5xl md:pt-6xl">
-      <!-- Billede -->
-      <div class="w-full lg:w-1/2" data-aos="fade-right">
-        <img src="/images/Nykredit_R5_5991.jpg" alt="Kunstværk udendørs" class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" />
-      </div>
-
-      <!-- Tekst -->
-      <div class="w-full lg:w-1/2 pl-l pr-l md:pl-6xl md:pr-6xl py-5xl lg:py-0 flex items-center">
-        <div>
-          <h2 class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xl md:mb-4xl" data-aos="fade-up">
-            Filosofien bag samlingen
-          </h2>
-          <p class="text-body-xxl-mobile sm:text-body-xxl-desktop italic mb-xl md:mb-4xl" data-aos="fade-up" data-aos-delay="200">
-            “Kunstsamlingen er et naturligt udtryk for den kultur, vi ønsker at fremme i Nykredit 
-			– en kultur, hvor refleksion, dialog og menneskeligt nærvær er centrale værdier. Ved at integrere kunsten i vores bygninger skaber vi rum, der inspirerer og forbinder 
-			– ikke bare medarbejdere, men også gæster og omverden. Det handler om mere end udsmykning; det handler om at tage ansvar for vores fælles rum og skabe mulighed for meningsfulde møder.”
-          </p>
-          <p class="text-body-regular-mobile sm:text-body-regular-desktop" data-aos="fade-up" data-aos-delay="400">
-            Michael Rasmussen, CEO i Nykredit
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Afsluttende sektion -->
-    <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
-      <h1 class="text-heading-01-mobile sm:text-heading-01-desktop mb-xl md:mb-4xl" data-aos="fade-up">
-        Kunst og social bæredygtighed i fællesskab
-      </h1>
-      <p class="text-body-regular-mobile sm:text-body-regular-desktop mb-xl md:mb-4xl" data-aos="fade-up" data-aos-delay="200">
-        Den bygningsintegrerede kunst i Nykredit Huset er en aktiv og naturlig del af husets identitet. Den fungerer som et samlende element, der forbinder arkitektur, mennesker og formål. Kunstværkerne er skabt specifikt til bygningens rum og former og indgår som en integreret del af arkitekturen. De er ikke kun tænkt som udsmykning, men som et aktivt bidrag til at skabe inkluderende, inspirerende og meningsfulde miljøer. Målet har været at skabe rum, hvor medarbejdere, gæster og besøgende oplever kunst og arkitektur som en sammenhængende helhed, der inviterer til dialog, refleksion og nærvær.
-        <br></br>Flere af værkerne er udviklet gennem åbne konkurrencer eller i tæt samarbejde med medarbejdere og kunstnere fra hele landet. Dette har sikret en bred involvering og understøttet en proces, hvor både kunstnerisk kvalitet og fælles ejerskab er prioriteret. Kunstens rolle i Nykredit Huset handler i høj grad om at fremme den sociale bæredygtighed. Ved at skabe adgang til kunst i hverdagen og lade den være et naturligt indslag i arbejds- og mødesituationer, understøttes trivsel, fællesskab og medarbejdernes oplevelse af medindflydelse og tilhørsforhold.
-        <br></br>Kunstsamlingen i Nykredit Huset er derfor ikke blot en æstetisk oplevelse. Den er et levende og vedvarende symbol på virksomhedens ambition om at skabe ansvarlige og inkluderende rammer. Kunsten skal styrke det sociale rum, fremme gensidig respekt og åbne op for nye perspektiver og relationer mellem mennesker. På den måde bidrager kunstværkerne til en dagligdag, hvor æstetik, fællesskab og social bæredygtighed går hånd i hånd og understøtter et arbejdsmiljø med plads til forskellighed, nysgerrighed og samarbejde.
-      </p>
-      <div class="flex justify-end" data-aos="fade-left" data-aos-delay="200">
-        <Button label="Læs mere om samlingen" href="/om_samlingen" />
-      </div>
-    </section>
-    
-
+    </div>
   </section>
+
+  <!-- Intro tekst og call-to-action -->
+  <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
+    <p class="text-body-xl-mobile sm:text-body-xl-desktop mb-3xl md:mb-4xl" data-aos="fade-up">
+      De bygningsintegrerede værker er nøje udvalgt og udviklet i samspil med arkitekturen for at skabe rum, der inspirerer, engagerer og åbner for nye perspektiver. Kunstens rolle er ikke kun æstetisk, men skal også styrke følelsen af tilhør og gøre hverdagen rigere for både medarbejdere og besøgende. Oplev hvordan kunst og arkitektur går i dialog og se værkerne med egne øjne på en rundvisning. 
+    </p>
+    <div class="flex justify-end" data-aos="fade-right">
+      <Button label="Book en rundvisning" href="/" />
+    </div>
+  </section>
+
+  <!-- Udvalgte værker -->
+  <section class="py-5xl md:py-6xl">
+    <h2 class="text-heading-02-mobile sm:text-heading-02-desktop mb-xl md:mb-4xl pl-l md:pl-6xl" data-aos="fade-right">
+      Udvalgte værker
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-xs">
+      <a href="/fremtiden-forgrener-sig-til-nutiden" data-aos="fade-up">
+        <ArtworkCard imageSrc={FremtidenLanding.src} imageAlt="Fremtiden forgrener sig til nutiden værk" artist="Peter Holst Henckel" title="Fremtiden forgrener sig til nutiden" loading="lazy" />
+      </a>
+      <a href="/panta-rei" data-aos="fade-up" data-aos-delay="200">
+        <ArtworkCard imageSrc={pantaRei.src} imageAlt="Panta Rei værk" artist="Bjørn Nørgaard" title="Panta Rei" loading="lazy" />
+      </a>
+      <a href="/staccato-snapshot" data-aos="fade-up" data-aos-delay="400">
+        <ArtworkCard imageSrc={staccatoSnapshot.src} imageAlt="Staccato Snapshot værk" artist="Carl Lützen" title="Staccato Snapshot" loading="lazy" />
+      </a>
+      <a href="/remise" data-aos="fade-up" data-aos-delay="600">
+        <ArtworkCard imageSrc={Remise.src} imageAlt="REMISE værk" artist="A Kassen" title="REMISE" loading="lazy" />
+      </a>
+    </div>
+    <div class="flex justify-end pt-5xl pr-l md:pr-6xl" data-aos="fade-left">
+      <Button label="Se hele samlingen" href="/vaerk_oversigt" />
+    </div>
+  </section>
+
+  <!-- Filosofien bag samlingen -->
+  <section class="flex flex-col lg:flex-row items-start pt-5xl md:pt-6xl">
+    <div class="w-full lg:w-1/2" data-aos="fade-right">
+      <img src="/images/Nykredit_R5_5991.jpg" alt="Kunstværk udendørs" class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" />
+    </div>
+    <div class="w-full lg:w-1/2 pl-l pr-l md:pl-6xl md:pr-6xl py-5xl lg:py-0 flex items-center">
+      <div>
+        <h2 class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xl md:mb-4xl" data-aos="fade-up">Filosofien bag samlingen</h2>
+        <p class="text-body-xxl-mobile sm:text-body-xxl-desktop italic mb-xl md:mb-4xl" data-aos="fade-up" data-aos-delay="200">
+          “Kunstsamlingen er et naturligt udtryk for den kultur, vi ønsker at fremme i Nykredit – en kultur, hvor refleksion, dialog og menneskeligt nærvær er centrale værdier. Ved at integrere kunsten i vores bygninger skaber vi rum, der inspirerer og forbinder – ikke bare medarbejdere, men også gæster og omverden. Det handler om mere end udsmykning; det handler om at tage ansvar for vores fælles rum og skabe mulighed for meningsfulde møder.”         </p>
+        <p class="text-body-regular-mobile sm:text-body-regular-desktop" data-aos="fade-up" data-aos-delay="400">
+          Michael Rasmussen, CEO i Nykredit
+        </p>
+      </div>
+    </div>  
+  </section>
+
+  <!-- Social bæredygtighed -->
+  <section class="max-w-screen-xl mx-auto px-l md:px-6xl py-5xl md:py-6xl">
+    <h1 class="text-heading-01-mobile sm:text-heading-01-desktop mb-xl md:mb-4xl" data-aos="fade-up">
+      Kunst og social bæredygtighed i fællesskab
+    </h1>
+    <p class="text-body-regular-mobile sm:text-body-regular-desktop mb-xl md:mb-4xl" data-aos="fade-up" data-aos-delay="200">
+      Den bygningsintegrerede kunst i Nykredit Huset er en aktiv og naturlig del af husets identitet. Den fungerer som et samlende element, der forbinder arkitektur, mennesker og formål. Kunstværkerne er skabt specifikt til bygningens rum og former og indgår som en integreret del af arkitekturen. De er ikke kun tænkt som udsmykning, men som et aktivt bidrag til at skabe inkluderende, inspirerende og meningsfulde miljøer. Målet har været at skabe rum, hvor medarbejdere, gæster og besøgende oplever kunst og arkitektur som en sammenhængende helhed, der inviterer til dialog, refleksion og nærvær.
+      <br></br>Flere af værkerne er udviklet gennem åbne konkurrencer eller i tæt samarbejde med medarbejdere og kunstnere fra hele landet. Dette har sikret en bred involvering og understøttet en proces, hvor både kunstnerisk kvalitet og fælles ejerskab er prioriteret. Kunstens rolle i Nykredit Huset handler i høj grad om at fremme den sociale bæredygtighed. Ved at skabe adgang til kunst i hverdagen og lade den være et naturligt indslag i arbejds- og mødesituationer, understøttes trivsel, fællesskab og medarbejdernes oplevelse af medindflydelse og tilhørsforhold.
+      <br></br>Kunstsamlingen i Nykredit Huset er derfor ikke blot en æstetisk oplevelse. Den er et levende og vedvarende symbol på virksomhedens ambition om at skabe ansvarlige og inkluderende rammer. Kunsten skal styrke det sociale rum, fremme gensidig respekt og åbne op for nye perspektiver og relationer mellem mennesker. På den måde bidrager kunstværkerne til en dagligdag, hvor æstetik, fællesskab og social bæredygtighed går hånd i hånd og understøtter et arbejdsmiljø med plads til forskellighed, nysgerrighed og samarbejde.</p>
+    <div class="flex justify-end" data-aos="fade-left" data-aos-delay="200">
+      <Button label="Læs mere om samlingen" href="/om_samlingen" />
+    </div>
+  </section>
+
 </MainLayout>
+
+<!-- Animationer -->
+<script is:client>
+window.addEventListener('DOMContentLoaded', () => {
+  const letters = document.querySelectorAll('#scatter-text span');
+  const image = document.getElementById('hero-image');
+  let completed = 0;
+
+  letters.forEach((letter, index) => {
+    const x = (Math.random() - 0.5) * window.innerWidth;
+    const y = (Math.random() - 0.5) * window.innerHeight;
+    letter.style.transform = `translate(${x}px, ${y}px)`;
+
+    setTimeout(() => {
+      letter.style.transition = 'transform 1s ease, opacity 1s ease';
+      letter.style.transform = 'translate(0, 0)';
+      letter.style.opacity = '1';
+
+      letter.addEventListener('transitionend', () => {
+        completed++;
+        if (completed === letters.length) {
+          image.classList.add('opacity-100');
+          setTimeout(() => startImageAnimation(image), 500);
+        }
+      }, { once: true });
+    }, 200 + index * 50);
+  });
+
+  function startImageAnimation(image) {
+    const images = [
+      'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/fremtiden-forgrener-sig-til-nutiden/billede1.jpg',
+      'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/panta-rei/billede1.jpg',
+      'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images/staccato-snapshot/billede1.jpg'
+    ];
+    let current = 0;
+
+    const overlay = document.createElement('img');
+    overlay.id = 'hero-image-overlay';
+    overlay.src = images[current];
+    overlay.style.position = 'absolute';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.objectFit = 'cover';
+    overlay.style.zIndex = '0';
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 1s ease';
+    overlay.style.pointerEvents = 'none';
+    image.parentNode.insertBefore(overlay, image);
+
+    setInterval(() => {
+      current = (current + 1) % images.length;
+      overlay.src = images[current];
+      overlay.style.opacity = '1';
+      setTimeout(() => {
+        image.src = images[current];
+        overlay.style.opacity = '0';
+      }, 800);
+    }, 2000);
+  }
+});
+</script>
