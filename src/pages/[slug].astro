@@ -103,7 +103,10 @@ const imageUrls = [
             <img 
               src={url} 
               alt={`Værkbillede ${index + 1}`} 
+              width="1200" 
+              height="800" 
               class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" 
+              loading="lazy"
             />
           ))}
         </div>
@@ -123,7 +126,14 @@ const imageUrls = [
         </div>
       </div>
       <div class="w-full lg:w-1/2 order-2 lg:order-1 pt-xs">
-        <img src={imageUrls[3]} alt="Kunstnercitat billede" class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" />
+        <img 
+          src={imageUrls[3]} 
+          alt="Kunstnercitat billede" 
+          width="1200" 
+          height="800" 
+          class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" 
+          loading="lazy"
+        />
       </div>
     </section>
 
