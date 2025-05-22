@@ -12,14 +12,19 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Oplev Nykredits bygningsintegrerede kunstsamling og se værkerne i samspil med arkitekturen. Book rundvisning og læs mere." />
-    <meta name="author" content="Nykredit Art Collection" />
-    <meta property="og:title" content="Nykredit Art Collection" />
+    <meta name="author" content="Nykredit Collection" />
+    <meta property="og:title" content="Nykredit Collection" />
     <meta property="og:description" content="Oplev Nykredits bygningsintegrerede kunstsamling og se værkerne i samspil med arkitekturen." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/nykredit_logo.svg" />
     <meta name="theme-color" content="#faf8f1" />
     <link rel="icon" type="image/svg+xml" href="/images/nykredit_logo.svg" />
-    <title>{title}</title>
+
+      <!-- CSS-optimering -->
+      <link rel="preload" href="/_astro/_slug_.D1jffc6x.css" as="style" />
+      <link rel="stylesheet" href="/_astro/_slug_.D1jffc6x.css" media="print" onload="this.media='all'" />
+      <noscript><link rel="stylesheet" href="/_astro/_slug_.D1jffc6x.css" /></noscript>
+    <title>{title} | Nykredit Collection</title>
   </head>
   
   <body class="">
