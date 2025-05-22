@@ -1,9 +1,12 @@
 import { defineConfig } from 'astro/config';
-import tailwind from "@astrojs/tailwind";
+import tailwind from '@astrojs/tailwind';
+import alpinejs from '@astrojs/alpinejs';
+import image from '@astrojs/image'; // ← tilføj dette
 
-import alpinejs from "@astrojs/alpinejs";
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), alpinejs()],
+  integrations: [
+    tailwind(),
+    alpinejs(),
+    image() // ← og tilføj denne linje
+  ],
 });

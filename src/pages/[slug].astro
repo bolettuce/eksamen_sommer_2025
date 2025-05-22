@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Button from "../components/Button.astro";
 import pin from "../assets/images/pin_placering.svg";
 import { supabase } from '../supabaseClient';
+import { Image } from '@astrojs/image/components';
 
 export async function getStaticPaths() {
   const { supabase } = await import('../supabaseClient.js');
@@ -36,10 +37,10 @@ if (!artwork) {
 // Dynamisk generér billed-URLs
 const imageBaseURL = 'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images';
 const imageUrls = [
-  `${imageBaseURL}/${slug}/billede1.jpg`,
-  `${imageBaseURL}/${slug}/billede2.jpg`,
-  `${imageBaseURL}/${slug}/billede3.jpg`,
-  `${imageBaseURL}/${slug}/billede4.jpg`
+  `${imageBaseURL}/${slug}/billede1.webp`,
+  `${imageBaseURL}/${slug}/billede2.webp`,
+  `${imageBaseURL}/${slug}/billede3.webp`,
+  `${imageBaseURL}/${slug}/billede4.webp`
 ];
 ---
 
