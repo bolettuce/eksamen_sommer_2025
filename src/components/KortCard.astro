@@ -1,23 +1,21 @@
 ---
-import Button from '../components/Button.astro';
 const { title, artist, year, slug, placering } = Astro.props;
 const imageUrl = `https://izzrgdiwpkuoqjpmqgtu.supabase.co/storage/v1/object/public/artworks/artwork-images/${slug}/billede1.webp`;
 ---
 
-<article class="flex flex-col md:flex-row bg-lysgul-500 w-full max-w-[500px]">
+<article class="flex flex-col bg-white/95 border border-black/10 rounded-lg shadow-md w-[280px] min-h-[260px] overflow-hidden">
   <img 
     src={imageUrl} 
     alt={`Billede af ${title}`} 
-    class="w-full md:w-[250px] h-[300px] md:h-[500px] object-cover" 
+    class="w-full h-[150px] object-cover"
+    loading="lazy"
   />
-  <div class="p-l md:p-xl flex flex-col gap-m">
-    <div>
-      <h3 class="text-subheading-01-mobile sm:text-subheading-01-desktop mb-xs md:mb-s">{title}</h3>
-      <p class="text-body-regular">{artist} / {year}</p>
-      <p class="text-body-regular mt-xs">{placering}</p>
-    </div>
-    <div class="mt-auto">
-      <Button label="Læs mere" href={`/${slug}`} />
-    </div>
+  <div class="p-m flex flex-col gap-1">
+    <h3 class="text-body-regular font-medium leading-tight">{title}</h3>
+    <p class="text-body-small text-black/70 leading-tight">{artist} / {year}</p>
+    <p class="text-body-small text-black/70 leading-tight">{placering}</p>
+    <a href={`/${slug}`} class="inline-flex items-center text-body-small font-semibold text-black mt-1 hover:underline">
+      Læs mere →
+    </a>
   </div>
 </article>
