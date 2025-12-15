@@ -2,40 +2,21 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Button from "../components/Button.astro";
 import pin from "../assets/images/pin_placering.svg";
-import { supabase } from '../supabaseClient';
-import { Image } from '@astrojs/image/components';
+import { artworks } from '../data/artworks.ts';
 
 export async function getStaticPaths() {
-  const { supabase } = await import('../supabaseClient.js');
-
-  const { data, error } = await supabase
-    .from('artworks')
-    .select('slug');
-
-  if (error) throw new Error(error.message);
-
-  return data.map((item) => ({
-    params: { slug: item.slug },
-  }));
+  return artworks.map((item) => ({ params: { slug: item.slug } }));
 }
 
 const { slug } = Astro.params;
-
-const { data: artworks, error } = await supabase
-  .from('artworks')
-  .select('*')
-  .eq('slug', slug)
-  .limit(1);
-
-if (error) throw new Error(error.message);
-const artwork = artworks?.[0];
+const artwork = artworks.find((item) => item.slug === slug);
 
 if (!artwork) {
   throw new Error(`Værk ikke fundet for slug: ${slug}`);
 }
 
 // Dynamisk generér billed-URLs
-const imageBaseURL = 'https://pfteqqpsagfcztycwohv.supabase.co/storage/v1/object/public/artwork-images';
+const imageBaseURL = 'https://izzrgdiwpkuoqjpmqgtu.supabase.co/storage/v1/object/public/artworks/artwork-images';
 const imageUrls = [
   `${imageBaseURL}/${slug}/billede1.webp`,
   `${imageBaseURL}/${slug}/billede2.webp`,
