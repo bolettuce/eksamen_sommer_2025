@@ -1,14 +1,17 @@
 ---
+import PhotoCredit from "./PhotoCredit.astro";
+
 const { imageSrc, imageAlt, artist, title } = Astro.props;
 ---
 
 <div>
-  <div class="overflow-hidden">
+  <div class="overflow-hidden relative">
     <img
       src={imageSrc}
       alt={imageAlt}
       class="w-full h-auto object-cover transition duration-300 ease-in-out hover:blur-sm"
     />
+    <PhotoCredit />
   </div>
     <div class="px-l py-s sm:pl-0 sm:pr-l">
       <p class="text-body-xl-mobile sm:text-body-xl-desktop">{artist}</p>

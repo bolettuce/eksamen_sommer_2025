@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Button from '../components/Button.astro';
 import carlLutzen from '../assets/images/samlingen_1.webp';
 import metteGitzJohansen from '../assets/images/samlingen_2.webp';
+import PhotoCredit from "../components/PhotoCredit.astro";
 ---
 <MainLayout title="Om samlingen">
   <section class="w-full pt-2xl">
@@ -18,7 +19,7 @@ import metteGitzJohansen from '../assets/images/samlingen_2.webp';
     </section>
 
     <!-- Billede -->
-    <div>
+    <div class="relative">
       <img
         src={carlLutzen.src}
         alt="Indgangsparti i Nykredit Huset"
@@ -26,6 +27,7 @@ import metteGitzJohansen from '../assets/images/samlingen_2.webp';
         height="800"
         class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover"
       />
+      <PhotoCredit />
     </div>
 
     <!-- Nye kunstnere -->
@@ -51,7 +53,7 @@ import metteGitzJohansen from '../assets/images/samlingen_2.webp';
     <!-- Kunst og arkitektur smelter sammen -->
     <section class="flex flex-col lg:flex-row items-start pt-5xl md:pt-6xl">
       <!-- Billede -->
-      <div class="w-full lg:w-1/2">
+      <div class="w-full lg:w-1/2 relative">
         <img
           src={metteGitzJohansen.src}
           alt="Billede af atrium i Nykredit Huset"
@@ -61,6 +63,7 @@ import metteGitzJohansen from '../assets/images/samlingen_2.webp';
           data-aos="fade-right"
           data-aos-delay="400"
         />
+        <PhotoCredit />
       </div>
 
       <!-- Tekst -->

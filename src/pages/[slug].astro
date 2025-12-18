@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Button from "../components/Button.astro";
 import pin from "../assets/images/pin_placering.svg";
 import { artworks } from '../data/artworks.ts';
+import PhotoCredit from "../components/PhotoCredit.astro";
 
 export async function getStaticPaths() {
   return artworks.map((item) => ({ params: { slug: item.slug } }));
@@ -81,14 +82,17 @@ const imageUrls = [
         <!-- Dynamiske billeder -->
         <div class="order-2 lg:order-1 flex flex-col gap-xs">
           {imageUrls.slice(0, 3).map((url, index) => (
-            <img 
-              src={url} 
-              alt={`Værkbillede ${index + 1}`} 
-              width="1200" 
-              height="800" 
-              class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" 
-              loading="eager"
-            />
+            <div class="relative" key={url}>
+              <img 
+                src={url} 
+                alt={`Værkbillede ${index + 1}`} 
+                width="1200" 
+                height="800" 
+                class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" 
+                loading="eager"
+              />
+              <PhotoCredit />
+            </div>
           ))}
         </div>
       </div>
@@ -107,14 +111,17 @@ const imageUrls = [
         </div>
       </div>
       <div class="w-full lg:w-1/2 order-2 lg:order-1 pt-xs">
-        <img 
-          src={imageUrls[3]} 
-          alt="Kunstnercitat billede" 
-          width="1200" 
-          height="800" 
-          class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" 
-          loading="lazy"
-        />
+        <div class="relative">
+          <img 
+            src={imageUrls[3]} 
+            alt="Kunstnercitat billede" 
+            width="1200" 
+            height="800" 
+            class="w-full h-[400px] md:h-[500px] lg:h-auto object-cover" 
+            loading="lazy"
+          />
+          <PhotoCredit />
+        </div>
       </div>
     </section>
 
